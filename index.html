@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>DarkNet</title>
+    <style>
+        body {
+            background-color: black;
+            color: lime;
+            font-family: monospace;
+            text-align: center;
+            padding: 30px;
+        }
+        button {
+            margin: 10px;
+            padding: 15px;
+            font-size: 16px;
+            background-color: #111;
+            color: lime;
+            border: 1px solid lime;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #222;
+        }
+    </style>
+</head>
+<body>
+    <h1>DarkNet</h1>
+    <button onclick="sendAction('unlock')">🔓 Déverrouiller</button>
+    <button onclick="sendAction('explode')">💥 Exploser</button>
+    <button onclick="sendAction('hack')">📱 Hacker un téléphone</button>
+
+    <script>
+        function sendAction(action) {
+            fetch(`https://${GetParentResourceName()}/darknetAction`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ action })
+            }).catch(e => console.error("Erreur:", e));
+        }
+    </script>
+</body>
+</html>
